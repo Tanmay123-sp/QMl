@@ -1,0 +1,10 @@
+<RCC>
+  <qresource prefix="/qt/qml/libraryManagementQml/">
+    <file alias="Main.qml">C:/Users/HPGGS03/Documents/libraryManagementQml/Main.qml</file>
+    <file alias="update.qml">C:/Users/HPGGS03/Documents/libraryManagementQml/update.qml</file>
+    <file alias="assign.qml">C:/Users/HPGGS03/Documents/libraryManagementQml/assign.qml</file>
+    <file alias="details.qml">C:/Users/HPGGS03/Documents/libraryManagementQml/details.qml</file>
+    <file alias="bookList.qml">C:/Users/HPGGS03/Documents/libraryManagementQml/bookList.qml</file>
+  </qresource>
+</RCC>
+

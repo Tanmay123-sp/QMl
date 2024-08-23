@@ -1,0 +1,16 @@
+--bare
+-I
+C:/Users/HPGGS03/Documents/libraryManagementQml/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug
+-I
+C:/Qt/6.6.3/mingw_64/./qml
+--resource
+C:/Users/HPGGS03/Documents/libraryManagementQml/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/.rcc/qmake_libraryManagementQml.qrc
+--resource
+C:/Users/HPGGS03/Documents/libraryManagementQml/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/.rcc/applibraryManagementQml_raw_qml_0.qrc
+C:/Users/HPGGS03/Documents/libraryManagementQml/Main.qml
+C:/Users/HPGGS03/Documents/libraryManagementQml/update.qml
+C:/Users/HPGGS03/Documents/libraryManagementQml/assign.qml
+C:/Users/HPGGS03/Documents/libraryManagementQml/details.qml
+C:/Users/HPGGS03/Documents/libraryManagementQml/bookList.qml
+--json
+C:/Users/HPGGS03/Documents/libraryManagementQml/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/applibraryManagementQml_qmllint.json
