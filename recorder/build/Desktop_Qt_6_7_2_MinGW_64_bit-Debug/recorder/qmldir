@@ -1,0 +1,5 @@
+module recorder
+typeinfo apprecorder.qmltypes
+prefer :/qt/qml/recorder/
+Main 1.0 Main.qml
+

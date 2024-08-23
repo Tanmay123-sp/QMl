@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="/">
+    <file alias="/qt/qml/recorder">C:/recorder/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/recorder</file>
+
+  </qresource>
+</RCC>

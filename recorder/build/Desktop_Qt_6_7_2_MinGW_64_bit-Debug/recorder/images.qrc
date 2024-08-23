@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/logo"/>
+    <qresource prefix="/">
+        <file>AudVid Recorder.png</file>
+        <file>AudVid Recorder (2).png</file>
+    </qresource>
+</RCC>
