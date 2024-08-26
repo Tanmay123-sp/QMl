@@ -1,7 +1,0 @@
-<RCC>
-  <qresource prefix="/qt/qml/recorder/">
-    <file alias="Main.qml">C:/recorder/Main.qml</file>
-    <file alias="images.qrc">C:/recorder/images.qrc</file>
-  </qresource>
-</RCC>
-

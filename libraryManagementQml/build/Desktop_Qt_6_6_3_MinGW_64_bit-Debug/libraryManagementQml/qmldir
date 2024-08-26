@@ -1,5 +1,0 @@
-module libraryManagementQml
-typeinfo applibraryManagementQml.qmltypes
-prefer :/qt/qml/libraryManagementQml/
-Main 1.0 Main.qml
-

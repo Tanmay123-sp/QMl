@@ -1,9 +1,0 @@
---resource
-C:/Users/HPGGS03/Documents/libraryManagementQml/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/.rcc/qmake_libraryManagementQml.qrc
---resource
-C:/Users/HPGGS03/Documents/libraryManagementQml/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/.rcc/applibraryManagementQml_raw_qml_0.qrc
-/qt/qml/libraryManagementQml/Main.qml
-/qt/qml/libraryManagementQml/update.qml
-/qt/qml/libraryManagementQml/assign.qml
-/qt/qml/libraryManagementQml/details.qml
-/qt/qml/libraryManagementQml/bookList.qml
