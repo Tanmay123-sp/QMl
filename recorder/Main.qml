@@ -2,6 +2,7 @@ import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts
 import QtMultimedia
+import Qt.labs.folderlistmodel
 
 ApplicationWindow {
     id:win
@@ -12,7 +13,8 @@ ApplicationWindow {
     color: "#494949"
 
     property string fileName1: "";
-    Image {
+
+       Image {
         id: centerIcon
         source: "file:///C:/Users/HPGGS03/Downloads/dsfds-removebg-preview.png"
         anchors.top: parent.top
@@ -30,10 +32,9 @@ ApplicationWindow {
         anchors.centerIn: parent
         radius: 20
         color: "transparent"
-        // border.color: "transparent"
         border.color: "#3A3A3A"
         border.width: 5
-        // radius:8
+
         Rectangle{
             id:cameraRect
             CaptureSession{
@@ -41,24 +42,23 @@ ApplicationWindow {
                 camera:Camera {
                     id: camera
                     onActiveChanged: {
-                       if (active) {
+                        if (active) {
                            console.log("Camera is now active.")
-                       } else {
+                        } else {
                            console.log("Camera has been deactivated.")
-                       }
-                   }
+                        }
+                    }
                 }
                 videoOutput: camVideoOutput
 
                 recorder:MediaRecorder {
                     id: mediaRecorder
-                    outputLocation: "file:///C:/recorder/recordedFiles"
+                    outputLocation: "file:///C:/QML Projects/recorder/recordedFiles"
                     // onRecorderStateChanged: {
                     //     console.log("Recorder state changed to", recorderState)
                     // }
                 }
                 audioInput: AudioInput {
-                        // device: MediaDevices.defaultAudioInput
                 }
             }
             VideoOutput {
@@ -68,28 +68,6 @@ ApplicationWindow {
             }
         }
 
-        Rectangle{
-            id:audioRect
-            Text{
-            text:"Recording Audio"
-            anchors.centerIn: parent
-            }
-            CaptureSession {
-                id: audioCaptureSession
-
-                audioInput: AudioInput {
-                    id: audioInput
-                }
-
-                recorder: MediaRecorder {
-                    id: audiomediaRecorder
-                    outputLocation: "file:///C:/recorder/recordedFiles"
-                }
-            }
-            AudioOutput{
-                id:recordedAudioOutput
-            }
-        }
         Rectangle {
             id:innerRect
             width: rect1.width - 40
@@ -143,6 +121,7 @@ ApplicationWindow {
                             if(audioRadio.checked){
 
                                 stackView.push(audioRect)
+                                audioRect.showText = true
                                 audiomediaRecorder.recorderState === MediaRecorder.StoppedState ? audiomediaRecorder.record() : console.log("Already recording")
                             }
                         }
@@ -274,7 +253,7 @@ ApplicationWindow {
                 StackView {
                    id: stackView
                    anchors.fill: parent
-                   initialItem:abc
+                   initialItem:videoPlayerItem
                    anchors.centerIn: parent
                    anchors.margins: 2
                 }
@@ -345,6 +324,29 @@ ApplicationWindow {
                     border.width: 2
                     radius:8
                 }
+                Rectangle{
+                    id:audioRect
+                    property bool showText: false;
+                    Text{
+                        id:audioText
+                        text:"Recording Audio"
+                        anchors.centerIn: parent
+                        visible: audioRect.showText
+                    }
+                    CaptureSession {
+                        id: audioCaptureSession
+                        audioInput: AudioInput {
+                            id: audioInput
+                        }
+                        recorder: MediaRecorder {
+                            id: audiomediaRecorder
+                            outputLocation: "file:///C:/QML Projects/recorder/recordedFiles"
+                        }
+                    }
+                    AudioOutput{
+                        id:recordedAudioOutput
+                    }
+                }
             }
             Rectangle {
                 id: listRect
@@ -368,14 +370,18 @@ ApplicationWindow {
                         height: parent.height
                         clip: true  // Ensure that content is clipped to the ListView's bounds
 
-                        model: ListModel {
-                            ListElement { fileName: "video1.mp4" }
-                            ListElement { fileName: "video2.mp4"}
-                            ListElement { fileName: "audio1.mp3" /*filePath: ""*/ }
-                            ListElement { fileName: "video_001.mp4" /*filePath: ""*/ }
-                            ListElement { fileName: "File5.mkv"/*filePath: ""*/ }
+                        // model: ListModel {
+                        //     ListElement { fileName: "video1.mp4" }
+                        //     ListElement { fileName: "video2.mp4"}
+                        //     ListElement { fileName: "audio1.mp3" /*filePath: ""*/ }
+                        //     ListElement { fileName: "video_001.mp4" /*filePath: ""*/ }
+                        //     ListElement { fileName: "File5.mkv"/*filePath: ""*/ }
+                        // }
+                        model:FolderListModel{
+                            id:modelView
+                            folder:"file:///C:/QML Projects/recorder/recordedFiles/"
+                            nameFilters: ["*.mp3","*.mp4","*.m4a","*.avi","*.wav"]
                         }
-                            // Add more files here
                         delegate: Item {
                         width: listRect.width - 10
                         height: 40
@@ -411,15 +417,16 @@ ApplicationWindow {
                                     // Determine whether the file is video or audio based on the extension
                                     if (model.fileName.endsWith(".mp4") || model.fileName.endsWith(".avi") || model.fileName.endsWith(".mkv")) {
                                         // Play video
-                                        mediaPlayer.source = "file:///C:/recorder/recordedFiles/" + model.fileName
+                                        mediaPlayer.source = modelView.folder + model.fileName
                                         stackView.clear()
                                         stackView.push(videoPlayerItem)
                                         Qt.callLater(() => mediaPlayer.play())
-                                    } else if (model.fileName.endsWith(".wav") || model.fileName.endsWith(".mp3") || model.fileName.endsWith(".mp4a")) {
+                                    } else if (model.fileName.endsWith(".wav") || model.fileName.endsWith(".mp3") || model.fileName.endsWith(".m4a")) {
                                         // Play audio
-                                        audiomediaPlayer.source = "file:///C:/Users/HPGGS03/Downloads/" + model.fileName
+                                        audiomediaPlayer.source = "file:///C:/QML Projects/recorder/recordedFiles/" + model.fileName
                                         stackView.clear()
                                         stackView.push(audioPlayerItem)
+
                                         Qt.callLater(() => audiomediaPlayer.play())
                                     } else {
                                         console.log("Unsupported file type: " + model.fileName)
@@ -440,7 +447,7 @@ ApplicationWindow {
                                 }
 
                                 onClicked: {
-                                    fileListView.model.remove(index)
+                                    modelView.remove(index)
                                     console.log("Deleted: " + model.fileName)
                                 }
                                 width: 80
