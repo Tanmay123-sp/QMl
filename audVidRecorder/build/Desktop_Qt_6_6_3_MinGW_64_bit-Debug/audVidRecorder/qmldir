@@ -1,5 +1,0 @@
-module audVidRecorder
-typeinfo appaudVidRecorder.qmltypes
-prefer :/qt/qml/audVidRecorder/
-Main 1.0 Main.qml
-

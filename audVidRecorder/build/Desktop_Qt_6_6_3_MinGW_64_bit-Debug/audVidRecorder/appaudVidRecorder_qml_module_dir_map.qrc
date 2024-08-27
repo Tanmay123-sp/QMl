@@ -1,6 +1,0 @@
-<RCC>
-  <qresource prefix="/">
-    <file alias="/qt/qml/audVidRecorder">C:/QML Projects/audVidRecorder/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/audVidRecorder</file>
-
-  </qresource>
-</RCC>
