@@ -21,7 +21,8 @@ qt_add_qml_module(apprecorder
     QML_FILES
         Main.qml
         RESOURCES images.qrc
-        SOURCES audiorecorder.h audiorecorder.cpp
+        # SOURCES audiorecorder.h audiorecorder.cpp
+        SOURCES datamanager.h datamanager.cpp
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.

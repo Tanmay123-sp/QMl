@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="/qt/qml/audVidRecorder/">
+    <file alias="Main.qml">C:/QML Projects/audVidRecorder/Main.qml</file>
+  </qresource>
+</RCC>
+

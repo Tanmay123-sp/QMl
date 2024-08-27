@@ -3,14 +3,19 @@ import QtQuick.Controls 2.15
 import QtQuick.Layouts
 import QtMultimedia
 import Qt.labs.folderlistmodel
+import DataManager 1.0
 
 ApplicationWindow {
     id:win
     visible: true
     width: 770
     height: 550
-    title: "AudVid Recorder"
+    title: "recorder"
     color: "#494949"
+
+    DataManager{
+        id:datamangerId
+    }
 
     property string fileName1: "";
 
@@ -34,6 +39,8 @@ ApplicationWindow {
         color: "transparent"
         border.color: "#3A3A3A"
         border.width: 5
+
+
 
         Rectangle{
             id:cameraRect
@@ -159,6 +166,7 @@ ApplicationWindow {
                             if(videoRadio.checked){
                             camera.active = false
                             mediaRecorder.stop()
+                            audioRect.showText1 = true
                             }
                             else{
                                 audiomediaRecorder.stop()
@@ -316,6 +324,9 @@ ApplicationWindow {
                         anchors.fill: parent
                         fillMode: VideoOutput.Stretch
                     }
+                    AudioOutput{
+                        id:audioOutput1
+                    }
                 }
                 Rectangle{
                     id:abc
@@ -327,12 +338,20 @@ ApplicationWindow {
                 Rectangle{
                     id:audioRect
                     property bool showText: false;
+                    property bool showText1: false;
                     Text{
-                        id:audioText
+                        id:audioText1
                         text:"Recording Audio"
                         anchors.centerIn: parent
                         visible: audioRect.showText
                     }
+                    Text{
+                        id:audioText2
+                        text:"Recording Stop"
+                        anchors.centerIn: parent
+                        visible: audioRect.showText1
+                    }
+
                     CaptureSession {
                         id: audioCaptureSession
                         audioInput: AudioInput {
@@ -361,36 +380,31 @@ ApplicationWindow {
                 radius:8
 
                 ScrollView {
-                    width: parent.width
-                    height: parent.height
+                    id:scrollID
+                    anchors.fill: parent
+                    // width: fileListView.width
+                    // height: parent.height
 
                     ListView {
                         id: fileListView
                         width: parent.width
-                        height: parent.height
+                        // height: parent.height
                         clip: true  // Ensure that content is clipped to the ListView's bounds
 
-                        // model: ListModel {
-                        //     ListElement { fileName: "video1.mp4" }
-                        //     ListElement { fileName: "video2.mp4"}
-                        //     ListElement { fileName: "audio1.mp3" /*filePath: ""*/ }
-                        //     ListElement { fileName: "video_001.mp4" /*filePath: ""*/ }
-                        //     ListElement { fileName: "File5.mkv"/*filePath: ""*/ }
-                        // }
                         model:FolderListModel{
                             id:modelView
                             folder:"file:///C:/QML Projects/recorder/recordedFiles/"
                             nameFilters: ["*.mp3","*.mp4","*.m4a","*.avi","*.wav"]
                         }
                         delegate: Item {
-                        width: listRect.width - 10
+                        width: fileListView.width
                         height: 40
 
-                        GridLayout {
-                            columns: 3
+                        RowLayout {
+                            // columns: 3
                             anchors.fill: parent
                             anchors.margins: 8
-                            columnSpacing: 15
+                            // columnSpacing: 15
 
                             Text {
                                 id:fileText
@@ -447,7 +461,7 @@ ApplicationWindow {
                                 }
 
                                 onClicked: {
-                                    modelView.remove(index)
+                                    datamangerId.deleteFile(model.filePath)
                                     console.log("Deleted: " + model.fileName)
                                 }
                                 width: 80
@@ -456,9 +470,10 @@ ApplicationWindow {
                                 }
                             }
                         }
-                        ScrollBar.vertical: ScrollBar {
-                            policy: ScrollBar.AlwaysOn
-                        }
+                        // ScrollBar.vertical: ScrollBar {
+                        //     policy: ScrollBar.AlwaysOn
+
+                        // }
                     }
                 }
             }

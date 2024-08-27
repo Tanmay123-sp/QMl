@@ -1,0 +1,169 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-fb41f0c2cfda76fa2dd3.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "audVidRecorder",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "all_qmllint::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-all_qmllint-Debug-18f760807a4312ab7a29.json",
+					"name" : "all_qmllint",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "all_qmllint_json::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-all_qmllint_json-Debug-72e06d52c5002000c44a.json",
+					"name" : "all_qmllint_json",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "all_qmllint_module::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-all_qmllint_module-Debug-8b5399c00b81af04a7f5.json",
+					"name" : "all_qmllint_module",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "all_qmltyperegistrations::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-all_qmltyperegistrations-Debug-5a938637011d18f26c11.json",
+					"name" : "all_qmltyperegistrations",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appaudVidRecorder::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appaudVidRecorder-Debug-ae2d76fa0684c0554137.json",
+					"name" : "appaudVidRecorder",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appaudVidRecorder_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appaudVidRecorder_autogen-Debug-278e4e1b519bb2c486dc.json",
+					"name" : "appaudVidRecorder_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appaudVidRecorder_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appaudVidRecorder_autogen_timestamp_deps-Debug-ae580e54dcb4724300a2.json",
+					"name" : "appaudVidRecorder_autogen_timestamp_deps",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appaudVidRecorder_qmlimportscan::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appaudVidRecorder_qmlimportscan-Debug-5cc746332389874649a3.json",
+					"name" : "appaudVidRecorder_qmlimportscan",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appaudVidRecorder_qmllint::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appaudVidRecorder_qmllint-Debug-2a3e87ef70c519fa5cfb.json",
+					"name" : "appaudVidRecorder_qmllint",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appaudVidRecorder_qmllint_json::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appaudVidRecorder_qmllint_json-Debug-4c0c40374a3c4237b0a1.json",
+					"name" : "appaudVidRecorder_qmllint_json",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appaudVidRecorder_qmllint_module::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appaudVidRecorder_qmllint_module-Debug-d0aae312ec5e47aadb36.json",
+					"name" : "appaudVidRecorder_qmllint_module",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appaudVidRecorder_qmltyperegistration::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appaudVidRecorder_qmltyperegistration-Debug-c9e6416d640e4095081c.json",
+					"name" : "appaudVidRecorder_qmltyperegistration",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appaudVidRecorder_tooling::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appaudVidRecorder_tooling-Debug-8c2738a80ea8bdfad416.json",
+					"name" : "appaudVidRecorder_tooling",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/QML Projects/audVidRecorder/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug",
+		"source" : "C:/QML Projects/audVidRecorder"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}

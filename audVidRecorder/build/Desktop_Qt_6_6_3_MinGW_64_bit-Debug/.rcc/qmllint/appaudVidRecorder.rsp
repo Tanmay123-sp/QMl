@@ -1,0 +1,10 @@
+--bare
+-I
+C:/QML Projects/audVidRecorder/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug
+-I
+C:/Qt/6.6.3/mingw_64/./qml
+--resource
+C:/QML Projects/audVidRecorder/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/.rcc/qmake_audVidRecorder.qrc
+--resource
+C:/QML Projects/audVidRecorder/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/.rcc/appaudVidRecorder_raw_qml_0.qrc
+C:/QML Projects/audVidRecorder/Main.qml
