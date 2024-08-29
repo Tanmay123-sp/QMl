@@ -19,7 +19,7 @@ ApplicationWindow {
 
     property string fileName1: "";
 
-       Image {
+    Image {
         id: centerIcon
         source: "file:///C:/Users/HPGGS03/Downloads/dsfds-removebg-preview.png"
         anchors.top: parent.top
@@ -41,39 +41,6 @@ ApplicationWindow {
         border.width: 5
 
 
-
-        Rectangle{
-            id:cameraRect
-            CaptureSession{
-                id: captureSession
-                camera:Camera {
-                    id: camera
-                    onActiveChanged: {
-                        if (active) {
-                           console.log("Camera is now active.")
-                        } else {
-                           console.log("Camera has been deactivated.")
-                        }
-                    }
-                }
-                videoOutput: camVideoOutput
-
-                recorder:MediaRecorder {
-                    id: mediaRecorder
-                    outputLocation: "file:///C:/QML Projects/recorder/recordedFiles"
-                    // onRecorderStateChanged: {
-                    //     console.log("Recorder state changed to", recorderState)
-                    // }
-                }
-                audioInput: AudioInput {
-                }
-            }
-            VideoOutput {
-                id: camVideoOutput
-                anchors.fill: parent
-                fillMode: VideoOutput.Stretch
-            }
-        }
 
         Rectangle {
             id:innerRect
@@ -118,7 +85,7 @@ ApplicationWindow {
                         }
 
                         onClicked:{
-
+                            audioText1.text = "Recording started"
                             stackView.clear()
                             if(videoRadio.checked){
                                 camera.active = true
@@ -128,7 +95,6 @@ ApplicationWindow {
                             if(audioRadio.checked){
 
                                 stackView.push(audioRect)
-                                audioRect.showText = true
                                 audiomediaRecorder.recorderState === MediaRecorder.StoppedState ? audiomediaRecorder.record() : console.log("Already recording")
                             }
                         }
@@ -163,10 +129,10 @@ ApplicationWindow {
                             }
                         }
                         onClicked:{
+                            audioText1.text = "Recording Stop"
                             if(videoRadio.checked){
                             camera.active = false
                             mediaRecorder.stop()
-                            audioRect.showText1 = true
                             }
                             else{
                                 audiomediaRecorder.stop()
@@ -270,16 +236,9 @@ ApplicationWindow {
                     radius:8
                     color: "lightgray"
                     Text {
-                       text: fileName1
-                       font.pixelSize: 18
-                       color: "blue"
-                       anchors.horizontalCenter: parent.horizontalCenter
-                       wrapMode: Text.WordWrap
-
-                       width: parent.width * 0.8
-                       horizontalAlignment: Text.AlignHCenter
+                        id: audioPlayerText
+                        anchors.centerIn: parent
                     }
-
                     MediaPlayer{
                         id:audiomediaPlayer
                         audioOutput: audioOutput
@@ -298,17 +257,9 @@ ApplicationWindow {
                     id: videoPlayerItem
                     radius: 8
                     Text {
-                       text: fileName1
-                       font.pixelSize: 18
-                       color: "black"
-                       anchors.centerIn: parent
-                       anchors.horizontalCenter: parent.horizontalCenter
-                       wrapMode: Text.WordWrap
-
-                       width: parent.width * 0.8
-                       horizontalAlignment: Text.AlignHCenter
+                        id: videoPlayerText
+                        anchors.centerIn: parent
                     }
-
                     MediaPlayer {
                         id: mediaPlayer
                         videoOutput: videoOutput  // Bind the MediaPlayer to the VideoOutput
@@ -318,7 +269,6 @@ ApplicationWindow {
                             }
                         }
                     }
-
                     VideoOutput {
                         id: videoOutput
                         anchors.fill: parent
@@ -337,21 +287,10 @@ ApplicationWindow {
                 }
                 Rectangle{
                     id:audioRect
-                    property bool showText: false;
-                    property bool showText1: false;
                     Text{
                         id:audioText1
-                        text:"Recording Audio"
                         anchors.centerIn: parent
-                        visible: audioRect.showText
                     }
-                    Text{
-                        id:audioText2
-                        text:"Recording Stop"
-                        anchors.centerIn: parent
-                        visible: audioRect.showText1
-                    }
-
                     CaptureSession {
                         id: audioCaptureSession
                         audioInput: AudioInput {
@@ -364,6 +303,38 @@ ApplicationWindow {
                     }
                     AudioOutput{
                         id:recordedAudioOutput
+                    }
+                }
+                Rectangle{
+                    id:cameraRect
+                    CaptureSession{
+                        id: captureSession
+                        camera:Camera {
+                            id: camera
+                            onActiveChanged: {
+                                if (active) {
+                                   console.log("Camera is now active.")
+                                } else {
+                                   console.log("Camera has been deactivated.")
+                                }
+                            }
+                        }
+                        videoOutput: camVideoOutput
+
+                        recorder:MediaRecorder {
+                            id: mediaRecorder
+                            outputLocation: "file:///C:/QML Projects/recorder/recordedFiles"
+                            // onRecorderStateChanged: {
+                            //     console.log("Recorder state changed to", recorderState)
+                            // }
+                        }
+                        audioInput: AudioInput {
+                        }
+                    }
+                    VideoOutput {
+                        id: camVideoOutput
+                        anchors.fill: parent
+                        fillMode: VideoOutput.Stretch
                     }
                 }
             }
@@ -431,12 +402,15 @@ ApplicationWindow {
                                     // Determine whether the file is video or audio based on the extension
                                     if (model.fileName.endsWith(".mp4") || model.fileName.endsWith(".avi") || model.fileName.endsWith(".mkv")) {
                                         // Play video
+
                                         mediaPlayer.source = modelView.folder + model.fileName
                                         stackView.clear()
                                         stackView.push(videoPlayerItem)
+                                        videoPlayerText.text = fileName1 + " Playing"
                                         Qt.callLater(() => mediaPlayer.play())
                                     } else if (model.fileName.endsWith(".wav") || model.fileName.endsWith(".mp3") || model.fileName.endsWith(".m4a")) {
                                         // Play audio
+                                        audioPlayerText.text = fileName1 + " Playing"
                                         audiomediaPlayer.source = "file:///C:/QML Projects/recorder/recordedFiles/" + model.fileName
                                         stackView.clear()
                                         stackView.push(audioPlayerItem)
