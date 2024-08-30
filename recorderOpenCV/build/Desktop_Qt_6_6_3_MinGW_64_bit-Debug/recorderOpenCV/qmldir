@@ -1,5 +1,0 @@
-module recorderOpenCV
-typeinfo apprecorderOpenCV.qmltypes
-prefer :/qt/qml/recorderOpenCV/
-Main 1.0 Main.qml
-
