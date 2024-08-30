@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="/">
+    <file alias="/qt/qml/recorderOpenCV">C:/QML Projects/recorderOpenCV/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/recorderOpenCV</file>
+
+  </qresource>
+</RCC>

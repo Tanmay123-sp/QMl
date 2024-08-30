@@ -22,5 +22,4 @@ bool dataManager::deleteFile(const QString &filePath)
         qDebug() << "File does not exist:" << filePath;
         return false;
     }
-
 }

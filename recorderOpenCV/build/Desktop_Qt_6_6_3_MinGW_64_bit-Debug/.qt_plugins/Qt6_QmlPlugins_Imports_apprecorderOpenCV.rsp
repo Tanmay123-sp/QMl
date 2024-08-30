@@ -1,0 +1,14 @@
+-rootPath
+C:/QML Projects/recorderOpenCV
+-cmake-output
+-output-file
+C:/QML Projects/recorderOpenCV/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/.qt_plugins/Qt6_QmlPlugins_Imports_apprecorderOpenCV.cmake
+-importPath
+C:/QML Projects/recorderOpenCV/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/recorderOpenCV
+-importPath
+C:/QML Projects/recorderOpenCV/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug
+-importPath
+C:/Qt/6.6.3/mingw_64/./qml
+-qrcFiles
+C:/QML Projects/recorderOpenCV/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/.rcc/qmake_recorderOpenCV.qrc
+C:/QML Projects/recorderOpenCV/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/.rcc/apprecorderOpenCV_raw_qml_0.qrc

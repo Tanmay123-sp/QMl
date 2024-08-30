@@ -58,4 +58,5 @@ compile_commands.json
 *.qmlc
 *.jsc
 
-# End of https://mrkandreev.name/snippets/gitignore-generator/#Qt,QML
+# Exclude the build directory inside recorderOpenCV
+/recorderOpenCV/build
