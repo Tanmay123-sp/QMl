@@ -59,4 +59,5 @@ compile_commands.json
 *.jsc
 
 # Exclude the build directory inside recorderOpenCV
-/recorderOpenCV/build
+recorderOpenCV/build/
+vehicleDashboardQML/build/

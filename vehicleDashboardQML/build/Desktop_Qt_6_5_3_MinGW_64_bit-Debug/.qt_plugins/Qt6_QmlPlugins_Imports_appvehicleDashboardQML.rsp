@@ -1,0 +1,14 @@
+-rootPath
+C:/QML Projects/vehicleDashboardQML
+-cmake-output
+-output-file
+C:/QML Projects/vehicleDashboardQML/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/.qt_plugins/Qt6_QmlPlugins_Imports_appvehicleDashboardQML.cmake
+-importPath
+C:/QML Projects/vehicleDashboardQML/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/vehicleDashboardQML
+-importPath
+C:/QML Projects/vehicleDashboardQML/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug
+-importPath
+C:/Qt/6.5.3/mingw_64/./qml
+-qrcFiles
+C:/QML Projects/vehicleDashboardQML/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/.rcc/qmake_vehicleDashboardQML.qrc
+C:/QML Projects/vehicleDashboardQML/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/.rcc/appvehicleDashboardQML_raw_qml_0.qrc

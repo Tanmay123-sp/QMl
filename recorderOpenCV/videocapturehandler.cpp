@@ -1,50 +1,67 @@
-#include "VideoCaptureHandler.h"
+#include "videoCaptureHandler.h"
+#include <QDebug>
+#include <QFile>
+#include<QTimer>
 
-// Constructor: Initializes OpenCV VideoCapture
-VideoCaptureHandler::VideoCaptureHandler(QObject *parent) : QObject(parent) {
-    // Initialize OpenCV VideoCapture for capturing video
-    cap.open(0); // Opens default camera, use a different number for other cameras
-    if (!cap.isOpened()) {
-        qDebug() << "Error: Unable to open the camera.";
-    } else {
-        qDebug() << "Camera opened successfully.";
-    }
+VideoCaptureHandler::VideoCaptureHandler(QObject *parent)
+    : QObject(parent), isRecording(false), captureTimer(new QTimer(this))
+{
+    connect(captureTimer, &QTimer::timeout, this, &VideoCaptureHandler::captureFrame);
 }
 
-// Starts video capture and processes frames
-void VideoCaptureHandler::startVideoCapture() {
+void VideoCaptureHandler::startVideoCapture()
+{
+    cap.open(0); // Open the default camera
     if (!cap.isOpened()) {
-        qDebug() << "Cannot start capture, camera not opened.";
+        qDebug() << "Error: Could not open the camera.";
         return;
     }
 
-    cv::Mat frame;
-    while (true) {
-        cap >> frame; // Capture a new frame
-        if (frame.empty()) {
-            qDebug() << "Empty frame captured, stopping.";
-            break;
-        }
-
-        // Process the frame here
-        // For example, convert the frame to QImage or other format suitable for display in QML
-        cv::imshow("Video Capture", frame); // Display the frame for debugging (remove in production)
-
-        // Check for exit condition, e.g., a specific key press
-        if (cv::waitKey(1) == 27) { // Exit on 'ESC' key press
-            qDebug() << "Exiting video capture loop.";
-            break;
-        }
-    }
-    cv::destroyAllWindows(); // Close all OpenCV windows
+    isRecording = true;
+    captureTimer->start(33); // Capture frames roughly at 30 FPS
 }
 
-// Stops video capture and releases the camera
-void VideoCaptureHandler::stopVideoCapture() {
-    if (cap.isOpened()) {
-        cap.release(); // Release the camera
-        qDebug() << "Camera released.";
-    } else {
-        qDebug() << "Camera was not opened.";
+void VideoCaptureHandler::captureFrame()
+{
+    if (!isRecording) return;
+
+    cv::Mat frame;
+    cap >> frame; // Capture a frame
+    if (!frame.empty()) {
+        frames.push_back(frame); // Store the frame
+        // Add code to update preview if needed
     }
+}
+
+void VideoCaptureHandler::stopVideoCapture()
+{
+    isRecording = false;
+    captureTimer->stop();
+    cap.release(); // Release the camera
+}
+
+QByteArray VideoCaptureHandler::getVideoData()
+{
+    if (frames.empty()) {
+        qDebug() << "No frames captured.";
+        return QByteArray();
+    }
+
+    // Convert the captured frames to a video format (e.g., .mp4)
+    std::string outputPath = "recordedVideo.mp4";
+    cv::VideoWriter writer(outputPath, cv::VideoWriter::fourcc('M', 'J', 'P', 'G'), 30, frames[0].size());
+
+    for (const auto& frame : frames) {
+        writer.write(frame); // Write each frame to the video file
+    }
+
+    writer.release();
+
+    // Read the video file as QByteArray
+    QFile videoFile(QString::fromStdString(outputPath));
+    if (!videoFile.open(QIODevice::ReadOnly)) {
+        qDebug() << "Error: Could not open the video file for reading.";
+        return QByteArray();
+    }
+    return videoFile.readAll();
 }

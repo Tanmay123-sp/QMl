@@ -18,8 +18,6 @@ int main(int argc, char *argv[])
         &app,
         []() { QCoreApplication::exit(-1); },
         Qt::QueuedConnection);
-    // qmlRegisterType<AudioRecorder>("com.example.audio", 1, 0, "AudioRecorder");
-    // engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 
     engine.loadFromModule("recorderOpenCV", "Main");
 

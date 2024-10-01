@@ -2,8 +2,7 @@
 #define DATAMANAGER_H
 
 #include <QObject>
-#include<portaudio.h>
-#include<opencv2/opencv.hpp>
+
 class dataManager : public QObject
 {
     Q_OBJECT
@@ -11,7 +10,11 @@ public:
     explicit dataManager(QObject *parent = nullptr);
 
     Q_INVOKABLE bool deleteFile(const QString &filePath);
+    Q_INVOKABLE bool saveFile(const QByteArray &data, const QString &fileName);
+
 signals:
+    void fileSaved(const QString &filePath);
+
 };
 
 #endif // DATAMANAGER_H

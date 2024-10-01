@@ -227,7 +227,7 @@ ApplicationWindow {
                 StackView {
                    id: stackView
                    anchors.fill: parent
-                   initialItem:videoPlayerItem
+                   initialItem:abc
                    anchors.centerIn: parent
                    anchors.margins: 2
                 }
@@ -262,6 +262,7 @@ ApplicationWindow {
                     }
                     MediaPlayer {
                         id: mediaPlayer
+                        audioOutput: audioOutput1
                         videoOutput: videoOutput  // Bind the MediaPlayer to the VideoOutput
                         onPlaybackStateChanged: {
                             if (playbackState === MediaPlayer.StoppedState) {
@@ -285,59 +286,6 @@ ApplicationWindow {
                     border.width: 2
                     radius:8
                 }
-                Rectangle{
-                    id:audioRect
-                    Text{
-                        id:audioText1
-                        anchors.centerIn: parent
-                    }
-                    CaptureSession {
-                        id: audioCaptureSession
-                        audioInput: AudioInput {
-                            id: audioInput
-                        }
-                        recorder: MediaRecorder {
-                            id: audiomediaRecorder
-                            outputLocation: "file:///C:/QML Projects/recorder/recordedFiles"
-                        }
-                    }
-                    AudioOutput{
-                        id:recordedAudioOutput
-                    }
-                }
-                Rectangle{
-                    id:cameraRect
-                    CaptureSession{
-                        id: captureSession
-                        camera:Camera {
-                            id: camera
-                            onActiveChanged: {
-                                if (active) {
-                                   console.log("Camera is now active.")
-                                } else {
-                                   console.log("Camera has been deactivated.")
-                                }
-                            }
-                        }
-                        videoOutput: camVideoOutput
-
-                        recorder:MediaRecorder {
-                            id: mediaRecorder
-                            outputLocation: "file:///C:/QML Projects/recorder/recordedFiles"
-                            // onRecorderStateChanged: {
-                            //     console.log("Recorder state changed to", recorderState)
-                            // }
-                        }
-                        audioInput: AudioInput {
-                        }
-                    }
-                    VideoOutput {
-                        id: camVideoOutput
-                        anchors.fill: parent
-                        fillMode: VideoOutput.Stretch
-                    }
-                }
-            }
             Rectangle {
                 id: listRect
                 anchors.top: buttonRect.bottom

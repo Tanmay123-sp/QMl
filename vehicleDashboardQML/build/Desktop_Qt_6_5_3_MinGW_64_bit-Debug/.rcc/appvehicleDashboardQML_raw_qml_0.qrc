@@ -1,0 +1,12 @@
+<RCC>
+  <qresource prefix="/qt/qml/vehicleDashboardQML/">
+    <file alias="Main.qml">C:/QML Projects/vehicleDashboardQML/Main.qml</file>
+    <file alias="Speedometer.qml">C:/QML Projects/vehicleDashboardQML/Speedometer.qml</file>
+    <file alias="FuelGauge.qml">C:/QML Projects/vehicleDashboardQML/FuelGauge.qml</file>
+    <file alias="DigitalClock.qml">C:/QML Projects/vehicleDashboardQML/DigitalClock.qml</file>
+    <file alias="TurnIndicators.qml">C:/QML Projects/vehicleDashboardQML/TurnIndicators.qml</file>
+    <file alias="DashboardShape.qml">C:/QML Projects/vehicleDashboardQML/DashboardShape.qml</file>
+    <file alias="TotalKm.qml">C:/QML Projects/vehicleDashboardQML/TotalKm.qml</file>
+  </qresource>
+</RCC>
+

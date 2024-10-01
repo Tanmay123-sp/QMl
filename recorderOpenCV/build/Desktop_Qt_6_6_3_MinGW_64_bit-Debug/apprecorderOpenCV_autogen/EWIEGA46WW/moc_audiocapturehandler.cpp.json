@@ -1,0 +1,34 @@
+{
+    "classes": [
+        {
+            "className": "AudioCaptureHandler",
+            "methods": [
+                {
+                    "access": "public",
+                    "name": "startAudioCapture",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "name": "stopAudioCapture",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "name": "getAudioData",
+                    "returnType": "QByteArray"
+                }
+            ],
+            "object": true,
+            "qualifiedClassName": "AudioCaptureHandler",
+            "superClasses": [
+                {
+                    "access": "public",
+                    "name": "QObject"
+                }
+            ]
+        }
+    ],
+    "inputFile": "audiocapturehandler.h",
+    "outputRevision": 68
+}

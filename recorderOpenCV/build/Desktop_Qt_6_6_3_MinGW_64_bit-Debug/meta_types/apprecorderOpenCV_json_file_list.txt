@@ -1,0 +1,3 @@
+C:/QML Projects/recorderOpenCV/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/apprecorderOpenCV_autogen/include/../EWIEGA46WW/moc_audiocapturehandler.cpp.json
+C:/QML Projects/recorderOpenCV/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/apprecorderOpenCV_autogen/include/../EWIEGA46WW/moc_datamanager.cpp.json
+C:/QML Projects/recorderOpenCV/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/apprecorderOpenCV_autogen/include/../EWIEGA46WW/moc_videocapturehandler.cpp.json

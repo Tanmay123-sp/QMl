@@ -1,0 +1,11 @@
+module vehicleDashboardQML
+typeinfo appvehicleDashboardQML.qmltypes
+prefer :/qt/qml/vehicleDashboardQML/
+Main 1.0 Main.qml
+Speedometer 1.0 Speedometer.qml
+FuelGauge 1.0 FuelGauge.qml
+DigitalClock 1.0 DigitalClock.qml
+TurnIndicators 1.0 TurnIndicators.qml
+DashboardShape 1.0 DashboardShape.qml
+TotalKm 1.0 TotalKm.qml
+

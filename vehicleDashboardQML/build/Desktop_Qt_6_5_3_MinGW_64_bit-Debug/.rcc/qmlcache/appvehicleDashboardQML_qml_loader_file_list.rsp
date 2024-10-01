@@ -1,0 +1,7 @@
+/qt/qml/vehicleDashboardQML/Main.qml
+/qt/qml/vehicleDashboardQML/Speedometer.qml
+/qt/qml/vehicleDashboardQML/FuelGauge.qml
+/qt/qml/vehicleDashboardQML/DigitalClock.qml
+/qt/qml/vehicleDashboardQML/TurnIndicators.qml
+/qt/qml/vehicleDashboardQML/DashboardShape.qml
+/qt/qml/vehicleDashboardQML/TotalKm.qml
