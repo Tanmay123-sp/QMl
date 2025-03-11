@@ -4,7 +4,7 @@ project(recorder VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Qt6 6.5 REQUIRED COMPONENTS Quick Core Multimedia)
+find_package(Qt6 6.5 REQUIRED COMPONENTS Quick Core Multimedia Mqtt)
 # find_package(Qt6 REQUIRED COMPONENTS Core Multimedia)
 # target_link_libraries(your_target_name PRIVATE Qt6::Core Qt6::Multimedia)
 
@@ -23,6 +23,7 @@ qt_add_qml_module(apprecorder
         RESOURCES images.qrc
         # SOURCES audiorecorder.h audiorecorder.cpp
         SOURCES datamanager.h datamanager.cpp
+        SOURCES mqttservice.h mqttservice.cpp
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
@@ -37,7 +38,7 @@ set_target_properties(apprecorder PROPERTIES
 )
 
 target_link_libraries(apprecorder
-    PRIVATE Qt6::Quick Qt6::Multimedia
+    PRIVATE Qt6::Quick Qt6::Multimedia Qt6::Mqtt
 )
 
 include(GNUInstallDirs)

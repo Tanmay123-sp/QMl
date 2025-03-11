@@ -4,7 +4,7 @@ project(vehicleDashboardQML VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Qt6 6.5 REQUIRED COMPONENTS Quick)
+find_package(Qt6 6.5 REQUIRED COMPONENTS Quick Mqtt)
 
 qt_standard_project_setup(REQUIRES 6.5)
 
@@ -23,6 +23,9 @@ qt_add_qml_module(appvehicleDashboardQML
         QML_FILES TurnIndicators.qml
         QML_FILES DashboardShape.qml
         QML_FILES TotalKm.qml
+        QML_FILES StartAndStop.qml
+        SOURCES
+        SOURCES mqtt.h mqtt.cpp
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
@@ -37,7 +40,7 @@ set_target_properties(appvehicleDashboardQML PROPERTIES
 )
 
 target_link_libraries(appvehicleDashboardQML
-    PRIVATE Qt6::Quick
+    PRIVATE Qt6::Quick Qt6::Mqtt
 )
 
 include(GNUInstallDirs)

@@ -1,7 +1,18 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
-
+import Mqtt 1.0
 Item {
+
+    function startWithMqtt(state){
+        if(state===true){
+            startTimer.start()
+        }
+        else if(state ===false){
+            stopTimer.start()
+            startTimer.stop()
+        }
+    }
+
     width: 800
     height: 400
 
@@ -119,28 +130,53 @@ Item {
     }
 
     // Slider for Speed Control
-    Slider {
-        id: speedSlider
-        from: 0
-        to: maxSpeed
-        stepSize: 1
+    // Slider {
+    //     id: speedSlider
+    //     from: 0
+    //     to: maxSpeed
+    //     stepSize: 1
+    //     anchors.top: speedometerCanvas.bottom
+    //     anchors.horizontalCenter: speedometerCanvas.horizontalCenter
+    //     anchors.topMargin: -100
+    //     width: 100
+    //     onValueChanged: {
+    //         speed = value; // Update speed based on slider value
+    //         updateRPM(); // Update the RPM
+    //         speedValueChanged(speed);  // Emit the custom signal when speed changes
+    //         speedometerCanvas.requestPaint(); // Request a repaint to update the needle
+    //     }
+    // }
+
+    Button{
+        id:startButton
+        text: "Start"
         anchors.top: speedometerCanvas.bottom
         anchors.horizontalCenter: speedometerCanvas.horizontalCenter
         anchors.topMargin: -100
         width: 100
-        onValueChanged: {
-            speed = value; // Update speed based on slider value
-            updateRPM(); // Update the RPM
-            speedValueChanged(speed);  // Emit the custom signal when speed changes
-            speedometerCanvas.requestPaint(); // Request a repaint to update the needle
+        onClicked:  {
+            startTimer.start()
         }
     }
 
-    Text {
-        text: "Accelerator "   // Display acceleration value
-        padding: 228
-        leftPadding: 110
+    Button{
+        id:stopButton
+        text: "Stop"
+        anchors.top: speedometerCanvas.bottom
+        anchors.horizontalCenter: speedometerCanvas.horizontalCenter + 250
+        anchors.topMargin: -100
+        width: 100
+        onClicked:  {
+            startTimer.stop()
+            stopTimer.start()
+        }
     }
+
+    // Text {
+    //     text: "Accelerator "   // Display acceleration value
+    //     padding: 228
+    //     leftPadding: 110
+    // }
 
     Text {
         padding: 100
@@ -149,4 +185,51 @@ Item {
         font.pixelSize: 30
         color: "#FF4500"
     }
+    Timer {
+        id: startTimer
+        interval: 1000
+        repeat: true
+        running: false
+        onTriggered: {
+            speed+=10;
+            updateRPM(); // Update the RPM
+            speedValueChanged(speed);
+            speedometerCanvas.requestPaint();
+        }
+    }
+
+    Timer {
+        id: stopTimer
+        interval: 100
+        repeat: true
+        running: false
+        onTriggered: {
+            if(speed >0){
+                speed-=1;
+                updateRPM(); // Update the RPM
+                speedValueChanged(speed);
+                speedometerCanvas.requestPaint();
+            }
+            else{
+                stopTimer.stop()
+            }
+        }
+    }
+    Mqtt{
+        id:mqttId
+        onMessageReceived: {
+            if(message === "start"){
+                startWithMqtt(true)
+            }
+            else if(message === "stop"){
+                startWithMqtt(false)
+            }
+        }
+    }
+    Component.onCompleted: {
+        mqttId.connectToHost(
+               "c4d197a73c4b4280ab318c9a8638e293.s1.eu.hivemq.cloud",
+                8883,"tanmay1","Password1","control")
+    }
 }
+

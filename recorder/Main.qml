@@ -4,6 +4,7 @@ import QtQuick.Layouts
 import QtMultimedia
 import Qt.labs.folderlistmodel
 import DataManager 1.0
+import mqttService
 
 ApplicationWindow {
     id:win
@@ -15,6 +16,13 @@ ApplicationWindow {
 
     DataManager{
         id:datamangerId
+    }
+
+    MqttService{
+        id:mqttId
+        onMessageReceived: {
+            messagesList.model.append({"message":topic + ": " + message})
+        }
     }
 
     property string fileName1: "";
@@ -227,7 +235,7 @@ ApplicationWindow {
                 StackView {
                    id: stackView
                    anchors.fill: parent
-                   initialItem:abc
+                   initialItem:videoPlayerItem
                    anchors.centerIn: parent
                    anchors.margins: 2
                 }
@@ -262,7 +270,6 @@ ApplicationWindow {
                     }
                     MediaPlayer {
                         id: mediaPlayer
-                        audioOutput: audioOutput1
                         videoOutput: videoOutput  // Bind the MediaPlayer to the VideoOutput
                         onPlaybackStateChanged: {
                             if (playbackState === MediaPlayer.StoppedState) {
@@ -286,6 +293,59 @@ ApplicationWindow {
                     border.width: 2
                     radius:8
                 }
+                Rectangle{
+                    id:audioRect
+                    Text{
+                        id:audioText1
+                        anchors.centerIn: parent
+                    }
+                    CaptureSession {
+                        id: audioCaptureSession
+                        audioInput: AudioInput {
+                            id: audioInput
+                        }
+                        recorder: MediaRecorder {
+                            id: audiomediaRecorder
+                            outputLocation: "file:///C:/QML Projects/recorder/recordedFiles"
+                        }
+                    }
+                    AudioOutput{
+                        id:recordedAudioOutput
+                    }
+                }
+                Rectangle{
+                    id:cameraRect
+                    CaptureSession{
+                        id: captureSession
+                        camera:Camera {
+                            id: camera
+                            onActiveChanged: {
+                                if (active) {
+                                   console.log("Camera is now active.")
+                                } else {
+                                   console.log("Camera has been deactivated.")
+                                }
+                            }
+                        }
+                        videoOutput: camVideoOutput
+
+                        recorder:MediaRecorder {
+                            id: mediaRecorder
+                            outputLocation: "file:///C:/QML Projects/recorder/recordedFiles"
+                            // onRecorderStateChanged: {
+                            //     console.log("Recorder state changed to", recorderState)
+                            // }
+                        }
+                        audioInput: AudioInput {
+                        }
+                    }
+                    VideoOutput {
+                        id: camVideoOutput
+                        anchors.fill: parent
+                        fillMode: VideoOutput.Stretch
+                    }
+                }
+            }
             Rectangle {
                 id: listRect
                 anchors.top: buttonRect.bottom
@@ -350,7 +410,6 @@ ApplicationWindow {
                                     // Determine whether the file is video or audio based on the extension
                                     if (model.fileName.endsWith(".mp4") || model.fileName.endsWith(".avi") || model.fileName.endsWith(".mkv")) {
                                         // Play video
-
                                         mediaPlayer.source = modelView.folder + model.fileName
                                         stackView.clear()
                                         stackView.push(videoPlayerItem)
@@ -372,7 +431,6 @@ ApplicationWindow {
                                 height: 30
                                 Layout.alignment: Qt.AlignRight
                             }
-
                             Button {
                                 id: deleteButton
                                 text: "Delete"
@@ -381,7 +439,6 @@ ApplicationWindow {
                                     color: "#CC0000"
                                     radius:8
                                 }
-
                                 onClicked: {
                                     datamangerId.deleteFile(model.filePath)
                                     console.log("Deleted: " + model.fileName)
@@ -399,7 +456,6 @@ ApplicationWindow {
                     }
                 }
             }
-
             gradient: Gradient {
                 GradientStop { position: 0.0; color: "#080E1C" }
                 GradientStop { position: 1.0; color: "#2A2D37" }
