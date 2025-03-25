@@ -1,6 +1,0 @@
-<RCC>
-  <qresource prefix="/">
-    <file alias="/qt/qml/vehicleDashboardQML">C:/QML Projects/vehicleDashboardQML/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/vehicleDashboardQML</file>
-
-  </qresource>
-</RCC>
