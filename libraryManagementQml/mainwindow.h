@@ -18,12 +18,6 @@ using namespace std;
     Q_INVOKABLE QString getBookCount(QString bookName);
     Q_INVOKABLE void updateBooks(QString bookName, int Quantity);
 
-private slots:
-    // void on_pushButton_clicked();
-    // void update_1(QString name,int count,bool selectCat);
-    // void update_2(QString name,int count);
-    // void on_pushButton_2_clicked();
-
 private:
 
     QMap<QString,pair<int,QMap<QString,int>>> bookMap;
