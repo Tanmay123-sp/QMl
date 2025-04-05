@@ -1,8 +1,6 @@
 #include "mainwindow.h"
 #include<QString>
 #include<QComboBox>
-// #include<QWidget>
-// #include<QComboBox>
 
     MainWindow::MainWindow(QObject *parent)
         : QObject(parent)
@@ -57,24 +55,3 @@
             bookMap[bookName] = std::make_pair(Quantity, QMap<QString, int>());
         }
     }
-
-
-// void MainWindow::update_1(QString name,int count,bool selectCat){
-//     // bookMap[name].first += count;
-//     // add_Books();
-//     MainWindow:: count_Books();
-// }
-
-// void MainWindow::update_2(QString name,int count){
-//     // bookMap[name].first += count;
-//     // add_Books();
-//     MainWindow:: count_Books();
-// }
-
-// void MainWindow :: count_Books(){
-//     int total_books =0;
-//     for(auto &count : bookMap){
-//         total_books += count.second.first;
-//     }
-    // ui->lineEdit->setText(QString :: number(total_books));
-// }
